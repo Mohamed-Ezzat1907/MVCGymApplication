@@ -4,7 +4,7 @@ using Route.GYM.DAL.Models.MemberShip;
 
 namespace Route.GYM.DAL.Persistence.Data.Configurations.MemberShips
 {
-    internal class MemberShipConfiguration : IEntityTypeConfiguration<MemberShip>
+    public class MemberShipConfiguration : IEntityTypeConfiguration<MemberShip>
     {
         public void Configure(EntityTypeBuilder<MemberShip> builder)
         {

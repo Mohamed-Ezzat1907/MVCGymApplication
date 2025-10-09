@@ -1,22 +1,10 @@
 ﻿using Route.GYM.DAL.Models.Plan;
+using Route.GYM.DAL.Persistence.Repositories._Generic;
 
 namespace Route.GYM.DAL.Persistence.Repositories.Plans
 {
-    internal interface IPlanRepository
+    public interface IPlanRepository : IGenericRepository<plan>
     {
-        // Get all Plan
-        IEnumerable<plan> GetAll(bool WithNoTracking = true);
-
-        // Get Plan by id
-        plan? Get(int id);
-
-        // Add Plan
-        int Add(plan member);
-
-        // Update Plan
-        int Update(plan member);
-
-        // Delete Plan
-        int Delete(plan member);
+      
     }
 }

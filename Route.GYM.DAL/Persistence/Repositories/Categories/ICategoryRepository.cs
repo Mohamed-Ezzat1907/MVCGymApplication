@@ -1,22 +1,10 @@
 ﻿using Route.GYM.DAL.Models.Category;
+using Route.GYM.DAL.Persistence.Repositories._Generic;
 
 namespace Route.GYM.DAL.Persistence.Repositories.Categories
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository : IGenericRepository<Category>
     {
-        // Get all Category
-        IEnumerable<Category> GetAll(bool WithNoTracking = true);
-
-        // Get Category by id
-        Category? Get(int id);
-
-        // Add Category
-        int Add(Category category);
-
-        // Update Category
-        int Update(Category category);
-
-        // Delete Category
-        int Delete(Category category);
+      
     }
 }

@@ -1,59 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Route.GYM.DAL.Models.Plan;
+﻿using Route.GYM.DAL.Models.Plan;
 using Route.GYM.DAL.Persistence.Data.Contexts;
+using Route.GYM.DAL.Persistence.Repositories._Generic;
 
 namespace Route.GYM.DAL.Persistence.Repositories.Plans
 {
-    internal class PlanRepository : IPlanRepository
+    public class PlanRepository : GenericRepository<plan>, IPlanRepository
     {
-        #region Fields
-
-        private readonly GymDbContext _dbContext;
-
-        #endregion
-
-        #region Constructor
-
-        public PlanRepository(GymDbContext dbContext)
+        public PlanRepository(GymDbContext dbcontext) : base(dbcontext)
         {
-            _dbContext = dbContext;
         }
-
-        #endregion
-
-        #region Methods
-
-        public plan? Get(int id)
-        {
-            return _dbContext.plans.Find(id);
-        }
-
-        public IEnumerable<plan> GetAll(bool WithNoTracking = true)
-        {
-            if (WithNoTracking)
-                return _dbContext.plans.AsNoTracking().ToList();
-            else
-                return _dbContext.plans.ToList();
-        }
-
-        public int Add(plan plan)
-        {
-            _dbContext.plans.Add(plan);
-            return _dbContext.SaveChanges();
-        }
-
-        public int Delete(plan plan)
-        {
-            _dbContext.plans.Remove(plan);
-            return _dbContext.SaveChanges();
-        }
-
-        public int Update(plan plan)
-        {
-            _dbContext.plans.Update(plan);
-            return _dbContext.SaveChanges();
-        }
-
-        #endregion
     }
 }
