@@ -1,4 +1,5 @@
 ﻿using Route.GYM.DAL.Persistence.Repositories.Bookings;
+using Route.GYM.DAL.Persistence.Repositories.Categories;
 using Route.GYM.DAL.Persistence.Repositories.HealthRecords;
 using Route.GYM.DAL.Persistence.Repositories.Members;
 using Route.GYM.DAL.Persistence.Repositories.MemberShips;
@@ -12,6 +13,7 @@ namespace Route.GYM.DAL.Persistence.UnitOfWork
     {
         public IMemberRepository MemberRepository { get; }
         public ITrainerRepository TrainerRepository { get; }
+        public ICategoryRepository CategoryRepository { get; }
         public IMemberShipRepository MemberShipRepository { get; }
         public IPlanRepository  PlanRepository { get; }
         public IHealthRecordRebository HealthRecordRebository { get; }

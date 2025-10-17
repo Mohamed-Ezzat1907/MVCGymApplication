@@ -107,6 +107,7 @@ namespace Route.GYM.BLL.Services.Members
                     },
                 };
                 _unitOfWork.MemberRepository.Add(member);
+                _unitOfWork.SaveChanges();
 
                 return true;
             }
@@ -156,6 +157,8 @@ namespace Route.GYM.BLL.Services.Members
             member.UpdatedAt = DateTime.Now;
 
             _unitOfWork.MemberRepository.Update(member);
+            _unitOfWork.SaveChanges();
+
             return true;
         }
 
@@ -182,6 +185,7 @@ namespace Route.GYM.BLL.Services.Members
                     memberShips.ForEach(ms => _unitOfWork.MemberShipRepository.Delete(ms));
 
                 _unitOfWork.MemberRepository.Delete(member);
+                _unitOfWork.SaveChanges();
 
                 return true;
             } 
