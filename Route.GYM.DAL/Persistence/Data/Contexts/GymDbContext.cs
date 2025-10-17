@@ -7,12 +7,7 @@ using Route.GYM.DAL.Models.MemberShip;
 using Route.GYM.DAL.Models.Plan;
 using Route.GYM.DAL.Models.Session;
 using Route.GYM.DAL.Models.Trainer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Route.GYM.DAL.Persistence.Data.Contexts
 {
