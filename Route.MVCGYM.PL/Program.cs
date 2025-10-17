@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Route.GYM.DAL.Persistence.Data.Contexts;
+using Route.GYM.DAL.Persistence.UnitOfWork;
 
 namespace Route.MVCGYM.PL
 {
@@ -13,7 +14,7 @@ namespace Route.MVCGYM.PL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<GymDbContext>();
+            builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
             builder.Services.AddDbContext<GymDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

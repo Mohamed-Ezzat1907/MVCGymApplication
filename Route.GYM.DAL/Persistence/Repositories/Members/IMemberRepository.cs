@@ -1,27 +1,10 @@
 ﻿using Route.GYM.DAL.Models.Member;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Route.GYM.DAL.Persistence.Repositories._Generic;
 
 namespace Route.GYM.DAL.Persistence.Repositories.Members
 {
-    public interface IMemberRepository
+    public interface IMemberRepository : IGenericRepository<Member>
     {
-        // Get all members
-        IEnumerable<Member> GetAll(bool WithNoTracking = true);
-
-        // Get member by id
-        Member? Get(int id);
-
-        // Add member
-        int Add(Member member);
-
-        // Update member
-        int Update(Member member);
-
-        // Delete member
-        int Delete(Member member);
+       
     }
 }

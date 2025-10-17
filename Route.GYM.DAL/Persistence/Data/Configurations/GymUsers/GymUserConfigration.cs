@@ -4,9 +4,9 @@ using Route.GYM.DAL.Models.GymUser;
 
 namespace Route.GYM.DAL.Persistence.Data.Configurations.GymUsers
 {
-    public class GymUserConfigration : IEntityTypeConfiguration<GymUser> 
+    public class GymUserConfigration<T> : IEntityTypeConfiguration<T> where T : GymUser
     {
-        public void Configure(EntityTypeBuilder<GymUser> builder)
+        public void Configure(EntityTypeBuilder<T> builder)
         {
             builder.Property(g => g.Name)
                    .HasColumnType("varchar")
