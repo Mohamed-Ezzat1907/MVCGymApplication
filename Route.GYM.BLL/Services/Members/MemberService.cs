@@ -146,7 +146,13 @@ namespace Route.GYM.BLL.Services.Members
             if (member is null)
                 return false;
 
-            if (IsEmailExist(memberCreateDTO.Email) || IsPhoneExist(memberCreateDTO.Phone))
+            var emailExists = _unitOfWork.MemberRepository
+                              .GetAll(m => m.Email.ToLower() == memberCreateDTO.Email.ToLower() && m.Id != id);
+
+            var phoneExists = _unitOfWork.MemberRepository
+                              .GetAll(m => m.Phone == memberCreateDTO.Phone && m.Id != id);
+
+            if (phoneExists.Any() || emailExists.Any())
                 return false;
 
             member.Email = memberCreateDTO.Email;

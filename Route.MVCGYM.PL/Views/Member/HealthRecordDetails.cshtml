@@ -1,0 +1,93 @@
+﻿@model HealthRecordDTO
+
+@{
+    ViewData["Title"] = "Health Record Details";
+}
+
+<div class="container my-5">
+    <main role="main" class="pb-3">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                    <!-- Header -->
+                    <div class="card-header bg-primary-color text-white text-center py-4">
+                        <h2 class="fw-bold mb-0">Health Record</h2>
+                        <p class="text-white-50 mb-0">Member's Health Information Overview</p>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body p-5 bg-light">
+                        <div class="row g-4">
+
+                            <!-- Height -->
+                            <div class="col-sm-6">
+                                <div class="info-box p-4 bg-white rounded-3 shadow-sm h-100">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-circle bg-primary-color">
+                                            <span class="text-white fw-bold fs-5">H</span>
+                                        </div>
+                                        <h6 class="mb-0 ms-3 text-muted">Height</h6>
+                                    </div>
+                                    <h4 class="text-primary-color mb-0">@Model.Height <small class="text-muted">cm</small></h4>
+                                </div>
+                            </div>
+
+                            <!-- Weight -->
+                            <div class="col-sm-6">
+                                <div class="info-box p-4 bg-white rounded-3 shadow-sm h-100">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-circle bg-success">
+                                            <span class="text-white fw-bold fs-5">W</span>
+                                        </div>
+                                        <h6 class="mb-0 ms-3 text-muted">Weight</h6>
+                                    </div>
+                                    <h4 class="text-success mb-0">@Model.Weight <small class="text-muted">kg</small></h4>
+                                </div>
+                            </div>
+
+                            <!-- Blood Type -->
+                            <div class="col-sm-6">
+                                <div class="info-box p-4 bg-white rounded-3 shadow-sm h-100">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-circle bg-danger">
+                                            <span class="text-white fw-bold fs-5">B</span>
+                                        </div>
+                                        <h6 class="mb-0 ms-3 text-muted">Blood Type</h6>
+                                    </div>
+                                    <h4 class="text-danger mb-0">@Model.BloodType</h4>
+                                </div>
+                            </div>
+
+                            <!-- Note -->
+                            <div class="col-sm-6">
+                                <div class="info-box p-4 bg-white rounded-3 shadow-sm h-100">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="icon-circle bg-warning">
+                                            <span class="text-white fw-bold fs-5">N</span>
+                                        </div>
+                                        <h6 class="mb-0 ms-3 text-muted">Note</h6>
+                                    </div>
+                                    <p class="mb-0 fs-6 text-secondary">
+                                        @(string.IsNullOrWhiteSpace(Model.Note) ? "No notes available" : Model.Note)
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="card-footer bg-white text-center py-4">
+                        <a asp-controller="Member" asp-action="Index" class="btn btn-primary px-5 py-2">
+                            <i class="bi bi-arrow-left me-2"></i> Back to Members
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

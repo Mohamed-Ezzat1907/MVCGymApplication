@@ -1,0 +1,138 @@
+﻿@model CreateTrainerDTO
+@{
+    ViewData["Title"] = "Add Trainer";
+}
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <header class="mb-4 text-center">
+        <h2 class="fw-bold text-primary-color">Add New Trainer</h2>
+        <p class="text-muted mb-0">Fill in the information below to register a new gym trainer.</p>
+    </header>
+
+    @Html.ValidationMessage("DataMissed", new { @class = "text-danger fw-semibold d-block mb-3 text-center" })
+
+    <form method="post" asp-action="Create" asp-controller="Trainer" class="bg-white p-4 rounded-4 shadow-sm border-0">
+
+        <!-- Tabs (for possible future sections) -->
+        <ul class="nav nav-tabs mb-4 border-0" id="addTrainerTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-semibold px-4 py-2 rounded-top"
+                        id="trainer-tab" data-bs-toggle="tab" data-bs-target="#trainer-info"
+                        type="button" role="tab">
+                    <i class="bi bi-person-badge-fill me-2"></i> Trainer Info
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+
+            <!-- Trainer Info -->
+            <div class="tab-pane fade show active" id="trainer-info" role="tabpanel" aria-labelledby="trainer-tab">
+
+                <!-- Personal Info -->
+                <div class="section-header mb-3">
+                    <h5 class="text-primary fw-bold">Personal Information</h5>
+                    <hr class="mt-2 mb-4">
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="Name"></label>
+                        <input asp-for="Name" type="text" class="form-control rounded-3" placeholder="Enter full name" />
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="Email"></label>
+                        <input asp-for="Email" type="email" class="form-control rounded-3" placeholder="example@email.com" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="Phone"></label>
+                        <input asp-for="Phone" type="text" class="form-control rounded-3" placeholder="01XXXXXXXXX" />
+                        <span asp-validation-for="Phone" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="DateOfBirth"></label>
+                        <input asp-for="DateOfBirth" class="form-control rounded-3" type="date" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="Gender"></label>
+                        <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()"
+                                class="form-select rounded-3">
+                            <option value="">-- Select Gender --</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <!-- Address Info -->
+                <div class="section-header mb-3 mt-5">
+                    <h5 class="text-primary fw-bold">Address Information</h5>
+                    <hr class="mt-2 mb-4">
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="BuidingNumber"></label>
+                        <input asp-for="BuidingNumber" class="form-control rounded-3" placeholder="e.g. 12" />
+                        <span asp-validation-for="BuidingNumber" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="Street"></label>
+                        <input asp-for="Street" class="form-control rounded-3" placeholder="Street name" />
+                        <span asp-validation-for="Street" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="City"></label>
+                        <input asp-for="City" class="form-control rounded-3" placeholder="City name" />
+                        <span asp-validation-for="City" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <!-- Trainer Speciality -->
+                <div class="section-header mb-3 mt-5">
+                    <h5 class="text-primary fw-bold">Trainer Speciality</h5>
+                    <hr class="mt-2 mb-4">
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" asp-for="Specialities"></label>
+                        <select asp-for="Specialities" asp-items="Html.GetEnumSelectList<Specialities>()"
+                                class="form-select rounded-3">
+                            <option value="">-- Select Speciality --</option>
+                        </select>
+                        <span asp-validation-for="Specialities" class="text-danger small"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <footer class="d-flex justify-content-end gap-3 mt-5">
+            <a asp-controller="Trainer" asp-action="Index" class="btn btn-outline-secondary px-4 py-2 rounded-pill">
+                <i class="bi bi-arrow-left me-2"></i> Back to List
+            </a>
+
+            <button type="submit" class="btn btn-fill px-4 py-2 rounded-pill fw-semibold">
+                <i class="bi bi-plus-circle me-2"></i> Add Trainer
+            </button>
+        </footer>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}

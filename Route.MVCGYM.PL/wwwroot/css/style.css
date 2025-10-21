@@ -1,4 +1,4 @@
-/* ^ global style */
+﻿/* ^ global style */
 
 :root {
     --primary-color: #070093;
@@ -65,6 +65,17 @@ h6,
 p,
 pre {
     font-family: 'Rubik', sans-serif;
+}
+
+.dropdown-menu.show-on-top {
+    position: absolute !important;
+    z-index: 1055 !important;
+    transform: translateY(5px);
+}
+
+/* ✅ حل مشكلة overflow في الجدول */
+.table-responsive {
+    overflow: visible !important;
 }
 
 /* ^ Start Navbar */
@@ -303,6 +314,52 @@ section.workout {
 .btn-lg {
     padding: 16px 32px;
     font-size: 18px;
+}
+
+
+.icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-box {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .info-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+.info-box {
+    background: #fff;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .info-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+.card-header {
+    min-height: 180px;
+}
+
+.card-body {
+    margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        margin-top: 80px;
+    }
 }
 
 /* Optional: Rounded Pill Style */
@@ -588,3 +645,41 @@ footer .footer-content .location p {
         border-color: var(--primary-color);
         -webkit-text-fill-color: #fff; /* ensures text stays visible on hover */
     }
+
+/* 🌙 Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #f5f5f5;
+}
+
+    body.dark-mode .navbar,
+    body.dark-mode footer {
+        background-color: #1c1c1c !important;
+    }
+
+    body.dark-mode .nav-link.text-black-alternative {
+        color: #f5f5f5 !important;
+    }
+
+    body.dark-mode .nav-link.active {
+        background-color: #fff !important;
+        color: #070093 !important;
+    }
+
+    body.dark-mode table {
+        background-color: #222 !important;
+        color: #fff !important;
+    }
+
+.dark-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .dark-toggle {
+    color: #fff;
+}
