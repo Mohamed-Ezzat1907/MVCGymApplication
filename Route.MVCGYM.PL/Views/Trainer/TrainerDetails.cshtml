@@ -1,0 +1,75 @@
+﻿@model TrainerDetailsDTO
+
+@{
+    ViewData["Title"] = "Trainer Details";
+}
+
+<div class="container my-5">
+    <main role="main" class="pb-3">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                    <!-- Header -->
+                    <div class="card-header bg-primary-color text-center py-5 position-relative">
+                        <img src="@(Url.Content("~/images/User.jpg"))"
+                             alt="@Model.Name"
+                             class="rounded-circle border border-3 border-white shadow-sm"
+                             style="width: 130px; height: 130px; object-fit: cover; position: absolute; left: 50%; top: 100%; transform: translate(-50%, -50%);" />
+                        <h2 class="text-white fw-bold mb-0">@Model.Name</h2>
+                        <p class="text-white-50 mb-0">Trainer Information</p>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body bg-light pt-5 px-5 pb-4 mt-5">
+                        <div class="row g-3">
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">📧 Email</small>
+                                <p class="fw-semibold">@Model.Email</p>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">📱 Phone</small>
+                                <p class="fw-semibold">@Model.Phone</p>
+                            </div>
+
+                            <!-- Specialities -->
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">🎯 Specialities</small>
+                                <p class="fw-semibold">@Model.Specialities</p>
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div class="col-md-6">
+                                <small class="text-muted d-block mb-1">🎂 Date of Birth</small>
+                                <p class="fw-semibold">@Model.DateOfBirth.ToShortDateString()</p>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-12">
+                                <small class="text-muted d-block mb-1">🏠 Address</small>
+                                <p class="fw-semibold">@Model.BuidingNumber, @Model.Street, @Model.City</p>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-controller="Trainer" asp-action="Index" class="btn btn-outline-secondary px-4">
+                                <i class="bi bi-arrow-left me-2"></i> Back to List
+                            </a>
+                            <a asp-controller="Trainer" asp-action="TrainerEdit" asp-route-id="@Model.Id" class="btn btn-primary px-4">
+                                <i class="bi bi-pencil-square me-2"></i> Edit Trainer
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

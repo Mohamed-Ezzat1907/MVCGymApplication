@@ -41,24 +41,26 @@ namespace Route.GYM.BLL.Services.Trainers
         }
 
         // Get Trainer By Id
-        public TrainerDetailsDTO? GetTrainerById(int id) 
+        public TrainerDetailsDTO? GetTrainerById(int id)
         {
             var trainer = _unitOfWork.TrainerRepository.Get(id);
 
             if (trainer is null)
                 return null;
 
-            var TrainerViewModel = new TrainerDetailsDTO
+            var trainerViewModel = new TrainerDetailsDTO
             {
                 Name = trainer.Name,
-                Specialities = trainer.Specialities.ToString(),
                 Email = trainer.Email,
                 Phone = trainer.Phone,
-                DateOfBirth = trainer.DateOfBirth.ToShortDateString(),
-                Address = FormatAddress(trainer.Address),
+                Specialities = trainer.Specialities, 
+                DateOfBirth = trainer.DateOfBirth,
+                BuidingNumber = trainer.Address.BuidingNumber,
+                Street = trainer.Address.Street,
+                City = trainer.Address.City
             };
 
-            return TrainerViewModel;
+            return trainerViewModel;
         }
 
         // Add Trainer
@@ -68,6 +70,7 @@ namespace Route.GYM.BLL.Services.Trainers
             {
                 if (IsEmailExist(createTrainerDTO.Email) || IsPhoneExist(createTrainerDTO.Phone))
                     return false;
+
                 var trainer = new Trainer
                 {
                     Name = createTrainerDTO.Name,
@@ -83,11 +86,13 @@ namespace Route.GYM.BLL.Services.Trainers
                     },
                     Specialities = createTrainerDTO.Specialities,
                 };
+
                 _unitOfWork.TrainerRepository.Add(trainer);
+                _unitOfWork.SaveChanges(); 
 
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -121,7 +126,13 @@ namespace Route.GYM.BLL.Services.Trainers
             if (trainer is null)
                 return false;
 
-            if (IsEmailExist(updateTrainerDTO.Email) || IsPhoneExist(updateTrainerDTO.Phone))
+            var emailExists = _unitOfWork.TrainerRepository
+                              .GetAll(m => m.Email.ToLower() == updateTrainerDTO.Email.ToLower() && m.Id != id);
+
+            var phoneExists = _unitOfWork.MemberRepository
+                              .GetAll(m => m.Phone == updateTrainerDTO.Phone && m.Id != id);
+
+            if (phoneExists.Any() || emailExists.Any())
                 return false;
 
             trainer.Email = updateTrainerDTO.Email;

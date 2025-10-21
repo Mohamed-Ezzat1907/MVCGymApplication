@@ -1,0 +1,99 @@
+﻿@model UpdateMemberDTO
+
+@{
+    ViewData["Title"] = "Edit Member";
+}
+
+<div class="container my-5">
+    <main role="main" class="pb-3">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                    <!-- Header -->
+                    <div class="card-header bg-primary-color text-center py-5 position-relative">
+                        <img src="@(string.IsNullOrWhiteSpace(Model.Photo) ? Url.Content("~/images/User.jpg") : Url.Content("~/images/" + Model.Photo))"
+                             alt="@Model.Name"
+                             class="rounded-circle border border-3 border-white shadow-sm"
+                             style="width: 130px; height: 130px; object-fit: cover; position: absolute; left: 50%; top: 100%; transform: translate(-50%, -50%);" />
+                        <h2 class="text-white fw-bold mb-0">@Model.Name</h2>
+                        <p class="text-white-50 mb-0">Edit Member Information</p>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body bg-light pt-5 px-5 pb-4 mt-5">
+                        <form method="post" asp-controller="Member" asp-action="MemberEdit">
+                            <input asp-for="Photo" hidden />
+                            <input asp-for="Name" hidden />
+
+                            <div class="row g-3">
+                                <!-- Email -->
+                                <div class="col-12">
+                                    <div class="info-box">
+                                        <small class="text-muted d-block mb-1">Email</small>
+                                        <input asp-for="Email" class="form-control" placeholder="Enter Email" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="col-md-6">
+                                    <div class="info-box">
+                                        <small class="text-muted d-block mb-1">Phone</small>
+                                        <input asp-for="Phone" class="form-control" placeholder="Enter Phone" />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Building Number -->
+                                <div class="col-md-6">
+                                    <div class="info-box">
+                                        <small class="text-muted d-block mb-1">Building Number</small>
+                                        <input asp-for="BuidingNumber" class="form-control" placeholder="Enter Building Number" />
+                                        <span asp-validation-for="BuidingNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- City -->
+                                <div class="col-md-6">
+                                    <div class="info-box">
+                                        <small class="text-muted d-block mb-1">City</small>
+                                        <input asp-for="City" class="form-control" placeholder="Enter City" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Street -->
+                                <div class="col-md-6">
+                                    <div class="info-box">
+                                        <small class="text-muted d-block mb-1">Street</small>
+                                        <input asp-for="Street" class="form-control" placeholder="Enter Street" />
+                                        <span asp-validation-for="Street" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <a asp-controller="Member" asp-action="Index" class="btn btn-outline-secondary px-4">
+                                    <i class="bi bi-arrow-left me-2"></i> Back to List
+                                </a>
+                                <button type="submit" class="btn btn-primary px-4">
+                                    <i class="bi bi-check-circle me-2"></i> Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
